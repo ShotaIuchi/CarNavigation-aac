@@ -10,6 +10,22 @@
         android:id="@+id/blankFragment"
         android:name="com.example.aac.ui.main.BlankFragment"
         android:label="blank_fragment"
-        tools:layout="@layout/blank_fragment" />
+        tools:layout="@layout/blank_fragment" >
+        <action
+            android:id="@+id/action_blankFragment_to_toastFragment"
+            app:destination="@id/toastFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/toastFragment"
+        android:name="com.example.aac.ui.main.ToastFragment"
+        android:label="toast_fragment"
+        tools:layout="@layout/toast_fragment" >
+        <action
+            android:id="@+id/action_toastFragment_pop"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/toastFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>
