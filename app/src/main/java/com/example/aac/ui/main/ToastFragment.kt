@@ -1,13 +1,17 @@
 package com.example.aac.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.aac.R
 import com.example.aac.databinding.ToastFragmentBinding
@@ -33,8 +37,18 @@ class ToastFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         GlobalScope.launch {
-            delay(viewModel.data!!.value!!.time)
-            findNavController().navigate(R.id.action_toastFragment_pop)
+            //viewModel.data?.let { delay(it.value!!.time) }
+
+            delay(3000)
+            viewModel.reset()
+            lifecycle.addObserver(object : LifecycleObserver {
+                @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+                fun connect() {
+                    lifecycle.removeObserver(this)
+                    Log.d("TEST", "[10]")
+                    findNavController().navigate(R.id.action_toastFragment_pop)
+                }
+            })
         }
     }
 

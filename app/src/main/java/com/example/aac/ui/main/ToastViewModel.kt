@@ -5,18 +5,22 @@ import androidx.lifecycle.ViewModel
 
 class ToastViewModel : ViewModel() {
 
-    public data class Data(val message: String, val time: Long)
+    data class Data(val message: String, val time: Long)
 
-    public var data: MutableLiveData<Data>? = null
+    public var data: SingleLiveEvent<Data>? = null
         get() {
             if (field == null) {
-                field = MutableLiveData()
+                field = SingleLiveEvent()
             }
             return field
         }
         private set
 
-    public fun show(data: Data) {
+    fun show(data: Data) {
         this.data!!.postValue(data)
+    }
+
+    fun reset() {
+        this.data = null
     }
 }

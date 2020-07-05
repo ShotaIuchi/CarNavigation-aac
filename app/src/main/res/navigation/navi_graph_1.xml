@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navi_graph_1"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/backgroundFragment">
 
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.example.aac.ui.main.BlankFragment"
-        android:label="blank_fragment"
-        tools:layout="@layout/blank_fragment" />
+        android:id="@+id/backgroundFragment"
+        android:name="com.example.aac.ui.main.BackgroundFragment"
+        android:label="background_fragment"
+        tools:layout="@layout/background_fragment" />
 
 </navigation>
