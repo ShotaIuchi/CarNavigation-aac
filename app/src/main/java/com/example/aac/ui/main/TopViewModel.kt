@@ -3,5 +3,7 @@ package com.example.aac.ui.main
 import androidx.lifecycle.ViewModel
 
 class TopViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+    val toast = ToastViewModel()
+
 }

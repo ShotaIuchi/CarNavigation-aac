@@ -30,7 +30,11 @@ class ToastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.toast_fragment, container, false)
-        binding.toast = viewModel
+        viewModel.data.value?.let {
+            binding.myself = it.data
+            viewModel.showed()
+        }
+
         return binding.root
     }
 
@@ -40,10 +44,10 @@ class ToastFragment : Fragment() {
             //viewModel.data?.let { delay(it.value!!.time) }
 
             delay(3000)
-            viewModel.reset()
             lifecycle.addObserver(object : LifecycleObserver {
                 @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
                 fun connect() {
+                    viewModel.reset()
                     lifecycle.removeObserver(this)
                     Log.d("TEST", "[10]")
                     findNavController().navigate(R.id.action_toastFragment_pop)

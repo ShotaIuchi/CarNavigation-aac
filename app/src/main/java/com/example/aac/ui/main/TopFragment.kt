@@ -54,6 +54,13 @@ class TopFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        toastModel.value.data.observe(viewLifecycleOwner, Observer {
+            if (it.isShow == ToastViewModel.Show.CAN_SHOW) {
+                Navigation.findNavController(binding.fragmentContainerToast).navigate(R.id.action_blankFragment_to_toastFragment)
+            }
+        })
+
+
         fragmentViewModel.value.toast.observe(viewLifecycleOwner, Observer {
             if (it) {
                 fragmentViewModel.value.toast.postValue(false)
