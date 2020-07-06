@@ -28,6 +28,7 @@ class SuperRtFragment : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.super_rt_fragment, container, false)
         binding.yrt.setOnClickListener{Navigation.findNavController(binding.fragmentSuperRt).navigate(R.id.action_nrtFragment_to_yrtFragment)}
         binding.nrt.setOnClickListener{Navigation.findNavController(binding.fragmentSuperRt).navigate(R.id.action_yrtFragment_to_nrtFragment)}
+        binding.next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_superRtFragment_to_longTapFragment))
         return binding.root
     }
 
