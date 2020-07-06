@@ -4,12 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navi_graph_2"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/superRtFragment">
 
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.example.aac.ui.main.BlankFragment"
-        android:label="blank_fragment"
-        tools:layout="@layout/blank_fragment" />
+        android:id="@+id/superRtFragment"
+        android:name="com.example.aac.ui.main.SuperRtFragment"
+        android:label="super_rt_fragment"
+        tools:layout="@layout/super_rt_fragment" >
+        <action
+            android:id="@+id/action_superRtFragment_to_longTapFragment"
+            app:destination="@id/longTapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/longTapFragment"
+        android:name="com.example.aac.ui.main.LongTapFragment"
+        android:label="long_tap_fragment"
+        tools:layout="@layout/long_tap_fragment" />
 
 </navigation>

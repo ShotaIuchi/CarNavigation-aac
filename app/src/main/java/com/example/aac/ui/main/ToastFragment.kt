@@ -43,6 +43,8 @@ class ToastFragment : Fragment() {
         GlobalScope.launch {
             //viewModel.data?.let { delay(it.value!!.time) }
 
+            //findNavController().popBackStack() //要確認
+
             delay(3000)
             lifecycle.addObserver(object : LifecycleObserver {
                 @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
