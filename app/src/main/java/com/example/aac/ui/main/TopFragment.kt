@@ -1,11 +1,12 @@
 package com.example.aac.ui.main
 
+import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
@@ -15,7 +16,10 @@ import com.example.aac.databinding.TopFragmentBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import permissions.dispatcher.*
 
+
+@RuntimePermissions
 class TopFragment : Fragment() {
 
     companion object {
@@ -31,6 +35,51 @@ class TopFragment : Fragment() {
     private val fragmentViewModel = activityViewModels<FragmentViewModel>()
 
 
+
+    // permission
+    @OnShowRationale(Manifest.permission.CAMERA)
+    fun cameraRequest(request: PermissionRequest) {
+        showRationaleDialog(
+            requireContext(),
+            request,
+            "カメラを利用してもよかですか？"
+        )
+    }
+    @NeedsPermission(Manifest.permission.CAMERA)
+    fun cameraOk() {
+        Toast.makeText(context, "にっこり", Toast.LENGTH_SHORT).show()
+    }
+    @OnPermissionDenied(Manifest.permission.CAMERA)
+    fun cameraNg() {
+        Toast.makeText(context, "なんで？", Toast.LENGTH_SHORT).show()
+    }
+    @OnNeverAskAgain(Manifest.permission.CAMERA)
+    fun cameraNgNever() {
+        Toast.makeText(context, "なんで？どうして？", Toast.LENGTH_SHORT).show()
+    }
+    @OnShowRationale(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+    fun contactsRequest(request: PermissionRequest) {
+        showRationaleDialog(
+            requireContext(),
+            request,
+            "連絡先でちょこっとあれしたいです"
+        )
+    }
+    @NeedsPermission(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+    fun contactsOk() {
+        Toast.makeText(context, "にっこり", Toast.LENGTH_SHORT).show()
+    }
+    @OnPermissionDenied(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+    fun contactsNg() {
+        Toast.makeText(context, "なんで？", Toast.LENGTH_SHORT).show()
+    }
+    @OnNeverAskAgain(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
+    fun contactsNgNever() {
+        Toast.makeText(context, "なんで？どうして？", Toast.LENGTH_SHORT).show()
+    }
+    // permission
+
+
     class TopObserver : LifecycleObserver {
         @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
         fun connect() {
@@ -43,11 +92,22 @@ class TopFragment : Fragment() {
         }
     }
 
+    // permission
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+    // permission
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.top_fragment, container, false)
+        // permission
+        binding.button1.setOnClickListener { cameraOkWithPermissionCheck() }
+        binding.button2.setOnClickListener { contactsOkWithPermissionCheck() }
+        // permission
         return binding.root
     }
 
