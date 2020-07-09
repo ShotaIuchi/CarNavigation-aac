@@ -71,6 +71,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
     testImplementation "androidx.arch.core:core-testing:$arch_version"
 
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    def activity_version = "1.1.0"
+    implementation "androidx.activity:activity-ktx:$activity_version"
+
     def nav_version = "2.3.0-alpha06"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -81,4 +86,9 @@ dependencies {
     def permission_version = "4.7.0"
     implementation "org.permissionsdispatcher:permissionsdispatcher:$permission_version"
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:$permission_version"
+
+
+    def rx_version = "3.0.0"
+    implementation "io.reactivex.rxjava3:rxandroid:$rx_version"
+    implementation "io.reactivex.rxjava3:rxjava:$rx_version"
 }

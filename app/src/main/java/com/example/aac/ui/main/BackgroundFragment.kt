@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.aac.R
 import com.example.aac.databinding.BackgroundFragmentBinding
+import com.example.aac.lib.AacMxpViewModel
 
 class BackgroundFragment : Fragment() {
 
@@ -19,11 +22,20 @@ class BackgroundFragment : Fragment() {
     private val fragmentViewModel = activityViewModels<FragmentViewModel>()
     private val toastModel = activityViewModels<ToastViewModel>()
 
+    private val aacMxpViewModel : AacMxpViewModel by viewModels()
+
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.background_fragment, container, false)
+        binding.aacMxpViewModel = aacMxpViewModel
         //binding.toast.setOnClickListener{fragmentViewModel.value.toast.postValue(true)}
         binding.toast.setOnClickListener{toastModel.value.doShow(ToastViewModel.Data("MMM", 10000))}
         return binding.root
