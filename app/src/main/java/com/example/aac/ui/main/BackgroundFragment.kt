@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.lifecycle.ViewModelProvider
 import com.example.aac.R
 import com.example.aac.databinding.BackgroundFragmentBinding
+import com.example.aac.lib.AacMxpHandle
 import com.example.aac.lib.AacMxpViewModel
 
 class BackgroundFragment : Fragment() {
@@ -41,12 +43,17 @@ class BackgroundFragment : Fragment() {
         //binding.toast.setOnClickListener{fragmentViewModel.value.toast.postValue(true)}
         binding.toast.setOnClickListener{toastModel.value.doShow(ToastViewModel.Data("MMM", 10000))}
 
-        aacMxpViewModel.mxpHandle.observe(viewLifecycleOwner, Observer {
+//        aacMxpViewModel.mxpHandle.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                // わんたいむ通知に帰る必要あり？
+//                Toast.makeText(context, it.xxx.toString(), Toast.LENGTH_SHORT).show()
+//            }
+//        })
+        aacMxpViewModel.mxpHandle.observe(viewLifecycleOwner) { it : AacMxpHandle? ->
             it?.let {
-                // わんたいむ通知に帰る必要あり？
                 Toast.makeText(context, it.xxx.toString(), Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
         return binding.root
     }
