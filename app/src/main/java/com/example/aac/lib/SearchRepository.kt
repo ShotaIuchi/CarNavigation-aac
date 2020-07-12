@@ -14,11 +14,13 @@ class SearchRepository() {
     fun search(result: MutableLiveData<ArrayList<PointInfo>>) {
         Observable.create(ObservableOnSubscribe<ArrayList<PointInfo>> {
             GlobalScope.launch {
+                var index = 0
                 for (i in 0..10) {
                     val t = ArrayList<PointInfo>()
                     for (j in 0..4) {
                         val p = "${i.toString()}|${j.toString()}"
-                        t.add(PointInfo(p,p,p,Gps(i.toLong(),j.toLong())))
+                        t.add(PointInfo(index.toString(),p,p,Gps(i.toLong(),j.toLong())))
+                        index++
                     }
                     it.onNext(t)
                     delay(1000)

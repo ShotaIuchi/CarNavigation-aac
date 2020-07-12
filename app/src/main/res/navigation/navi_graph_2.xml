@@ -27,6 +27,19 @@
         android:id="@+id/searchFragment"
         android:name="com.example.aac.ui.main.SearchFragment"
         android:label="search_fragment"
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchDetailFragment"
+            app:destination="@id/searchDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchDetailFragment"
+        android:name="com.example.aac.ui.main.SearchDetailFragment"
+        android:label="search_detail_fragment"
+        tools:layout="@layout/search_detail_fragment" >
+        <argument
+            android:name="pointId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
