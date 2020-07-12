@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.aac.R
 import com.example.aac.databinding.SuperRtFragmentBinding
 
@@ -32,6 +33,7 @@ class SuperRtFragment : Fragment() {
         binding.yrt.setOnClickListener{Navigation.findNavController(binding.fragmentSuperRt).navigate(R.id.action_nrtFragment_to_yrtFragment)}
         binding.nrt.setOnClickListener{Navigation.findNavController(binding.fragmentSuperRt).navigate(R.id.action_yrtFragment_to_nrtFragment)}
         binding.next.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_superRtFragment_to_longTapFragment))
+        binding.search.setOnClickListener{binding.search.findNavController().navigate(SuperRtFragmentDirections.actionSuperRtFragmentToSearchFragment())}
         return binding.root
     }
 

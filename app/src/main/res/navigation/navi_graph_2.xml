@@ -14,11 +14,19 @@
         <action
             android:id="@+id/action_superRtFragment_to_longTapFragment"
             app:destination="@id/longTapFragment" />
+        <action
+            android:id="@+id/action_superRtFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/longTapFragment"
         android:name="com.example.aac.ui.main.LongTapFragment"
         android:label="long_tap_fragment"
         tools:layout="@layout/long_tap_fragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.aac.ui.main.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment" />
 
 </navigation>

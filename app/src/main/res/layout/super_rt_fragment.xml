@@ -23,12 +23,22 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:navGraph="@navigation/navi_graph_super_rt" />
+            app:navGraph="@navigation/navi_graph_super_rt" >
+
+        </androidx.fragment.app.FragmentContainerView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.main.SuperRtFragment">
+
+            <Button
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                app:layout_constraintBottom_toTopOf="@+id/next"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
                 android:id="@+id/yrt"
