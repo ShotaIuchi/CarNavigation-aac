@@ -5,13 +5,26 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchRepository() {
 
+    var search = SearchDataSource()
+
+
     fun search(result: MutableLiveData<ArrayList<PointInfo>>) {
+
+        GlobalScope.launch(Dispatchers.Default) {
+            search.serch()
+            delay(300)
+            search.serch()
+        }
+
+
+
         Observable.create(ObservableOnSubscribe<ArrayList<PointInfo>> {
             GlobalScope.launch {
                 var index = 0
